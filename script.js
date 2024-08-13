@@ -1,14 +1,16 @@
 let fields = [
     null, //0
-    'circle', //1
-    'circle', //2
+    null, //1
+    null, //2
     null, //3
-    'cross', //4
+    null, //4
     null, //5
     null, //6
-    'cross', //7
+    null, //7
     null  //8
 ];
+
+let currentPlayer = 'circle'; // Startspieler
 
 function init() {
     // Rendern des Spielfelds
@@ -33,6 +35,11 @@ function render() {
                 td.innerHTML = createCircleSVG();
             } else if (fields[fieldIndex] === 'cross') {
                 td.innerHTML = createCrossSVG();
+            } else {
+                // Nur leere Felder sind klickbar
+                td.onclick = function() {
+                    handleMove(td, fieldIndex);
+                };
             }
 
             tr.appendChild(td);
@@ -42,6 +49,25 @@ function render() {
     }
 
     gameBoard.appendChild(table);
+}
+
+// Funktion, um einen Zug zu machen
+function handleMove(td, index) {
+    // Setze das aktuelle Feld im Array auf den aktuellen Spieler
+    fields[index] = currentPlayer;
+
+    // Füge das entsprechende SVG in das td-Element ein
+    if (currentPlayer === 'circle') {
+        td.innerHTML = createCircleSVG();
+    } else if (currentPlayer === 'cross') {
+        td.innerHTML = createCrossSVG();
+    }
+
+    // Entferne das onclick-Attribut, um weitere Klicks zu verhindern
+    td.onclick = null;
+
+    // Wechsle den Spieler
+    currentPlayer = currentPlayer === 'circle' ? 'cross' : 'circle';
 }
 
 

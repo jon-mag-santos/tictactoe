@@ -22,8 +22,11 @@ td {
     text-align: center;
     vertical-align: middle;
     font-size: 2em;
-    background-color: #4a4a4a; /* Hintergrundfarbe der Zellen */
     cursor: pointer;
+}
+
+td:hover {
+    background-color: #4a4a4a; /* Hintergrundfarbe der Zellen */
 }
 
 /* Innere Trennlinien, ohne äußere */
