@@ -1,0 +1,44 @@
+/* Gesamtgestaltung der Seite */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #323232;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Gestaltung der Tabelle */
+table {
+    border-collapse: collapse; /* Keine Außenlinien, nur Trennlinien innerhalb der Tabelle */
+}
+
+td {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 2em;
+    background-color: #4a4a4a; /* Hintergrundfarbe der Zellen */
+    cursor: pointer;
+}
+
+/* Innere Trennlinien, ohne äußere */
+td + td {
+    border-left: 5px solid white; /* Nur linke Seite der Zellen innerhalb der Zeilen */
+}
+
+tr + tr td {
+    border-top: 5px solid white; /* Nur obere Seite der Zellen innerhalb der Spalten */
+}
+
+
+/* Anpassung des Titels */
+h1 {
+    margin-bottom: 20px;
+    color: white;
+    font-size: 2.5em;
+}
