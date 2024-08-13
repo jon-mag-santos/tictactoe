@@ -74,9 +74,24 @@ function handleMove(td, index) {
         drawWinningLine();
         removeAllOnclickAttributes();
     } else {
-        // Wechsle den Spieler, wenn das Spiel nicht gewonnen wurde
-        currentPlayer = currentPlayer === 'circle' ? 'cross' : 'circle';
+        if (!checkDraw()){
+            // Wechsle den Spieler, wenn das Spiel nicht gewonnen wurde
+            currentPlayer = currentPlayer === 'circle' ? 'cross' : 'circle';
+        } 
     }
+}
+
+function checkDraw() {
+    // Überprüfe, ob alle Felder belegt sind und es keinen Gewinner gibt
+    const allFieldsFilled = fields.every(field => field !== null);
+    const noWinner = !checkWin();
+
+    // Wenn alle Felder belegt sind und es keinen Gewinner gibt, ist es ein Unentschieden
+    if (allFieldsFilled && noWinner) {
+        return true;
+    }
+
+    return false;
 }
 
 // Funktion zur Überprüfung, ob ein Spieler gewonnen hat
@@ -202,6 +217,25 @@ function removeAllOnclickAttributes() {
     for (let td of tdElements) {
         td.onclick = null;
     }
+}
+
+function restartGame() {
+    fields = [
+        null, //0
+        null, //1
+        null, //2
+        null, //3
+        null, //4
+        null, //5
+        null, //6
+        null, //7
+        null  //8
+    ];
+    
+    currentPlayer = 'circle'; // Startspieler
+    gameWon = false; // Spielstatus
+    
+    render();
 }
 
 // SVG für Kreis
