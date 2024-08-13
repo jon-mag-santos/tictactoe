@@ -10,6 +10,11 @@ let fields = [
     null  //8
 ];
 
+function init() {
+    // Rendern des Spielfelds
+    render();
+}
+
 // Die render() Funktion
 function render() {
     const gameBoard = document.getElementById('game-board');
@@ -25,9 +30,9 @@ function render() {
             const fieldIndex = row * 3 + col;
 
             if (fields[fieldIndex] === 'circle') {
-                td.innerHTML = 'O';
+                td.innerHTML = createCircleSVG();
             } else if (fields[fieldIndex] === 'cross') {
-                td.innerHTML = 'X';
+                td.innerHTML = createCrossSVG();
             }
 
             tr.appendChild(td);
@@ -39,5 +44,40 @@ function render() {
     gameBoard.appendChild(table);
 }
 
-// Rendern des Spielfelds
-render();
+
+function createCircleSVG() {
+    const svgHTML = `
+        <svg width="70" height="70" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+            <!-- Hintergrundkreis (optional) 
+            <circle cx="35" cy="35" r="30" fill="none" stroke="#ddd" stroke-width="5"></circle> -->
+
+            <!-- Animierter Kreis -->
+            <circle cx="35" cy="35" r="30" fill="none" stroke="#00B0EF" stroke-width="5"
+                    stroke-dasharray="188.4" stroke-dashoffset="188.4">
+                <animate attributeName="stroke-dashoffset" from="188.4" to="0" dur="0.2s" fill="freeze" begin="0s"/>
+            </circle>
+        </svg>
+    `;
+
+    return svgHTML;
+}
+
+function createCrossSVG() {
+    const svgHTML = `
+        <svg width="70" height="70" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+            <!-- Linie 1 des Kreuzes -->
+            <line x1="15" y1="15" x2="55" y2="55" stroke="#FFC000" stroke-width="5" stroke-linecap="round">
+                <animate attributeName="x2" from="15" to="55" dur="0.2s" fill="freeze" begin="0s" />
+                <animate attributeName="y2" from="15" to="55" dur="0.2s" fill="freeze" begin="0s" />
+            </line>
+            
+            <!-- Linie 2 des Kreuzes -->
+            <line x1="55" y1="15" x2="15" y2="55" stroke="#FFC000" stroke-width="5" stroke-linecap="round">
+                <animate attributeName="x2" from="55" to="15" dur="0.2s" fill="freeze" begin="0s" />
+                <animate attributeName="y2" from="15" to="55" dur="0.2s" fill="freeze" begin="0s" />
+            </line>
+        </svg>
+    `;
+    
+    return svgHTML;
+}
