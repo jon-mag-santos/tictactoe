@@ -125,8 +125,7 @@ function drawWinningLine() {
         
         // SVG für die Linie erstellen
         const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svg.setAttribute("width", "100%");
-        svg.setAttribute("height", "100%");
+        svg.setAttribute("height", "50%");
         svg.style.position = "absolute";
         svg.style.pointerEvents = "none"; // SVG soll nicht das Spieler-Event blockieren
 
