@@ -72,6 +72,7 @@ function handleMove(td, index) {
     if (checkWin()) {
         gameWon = true;
         drawWinningLine();
+        removeAllOnclickAttributes();
     } else {
         // Wechsle den Spieler, wenn das Spiel nicht gewonnen wurde
         currentPlayer = currentPlayer === 'circle' ? 'cross' : 'circle';
@@ -187,6 +188,19 @@ function drawWinningLine() {
             duration: 500,
             fill: "forwards"
         });
+    }
+}
+
+function removeAllOnclickAttributes() {
+    // Hole das Spielfeld-Element
+    const gameBoard = document.getElementById('game-board');
+    
+    // Hole alle <td> Elemente im Spielbrett
+    const tdElements = gameBoard.getElementsByTagName('td');
+    
+    // Durchlaufe alle <td> Elemente und entferne das onclick Attribut
+    for (let td of tdElements) {
+        td.onclick = null;
     }
 }
 
